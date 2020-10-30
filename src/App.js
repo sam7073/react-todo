@@ -3,24 +3,20 @@ import TodoInsert from './components/TodoInsert';
 import TodoList from './components/TodoList';
 import TodoTemplate from './components/TodoTemplate';
 
-function App() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: '리액트 기초 알아보기',
-      checked: true,
-    },
-    {
-      id: 2,
-      text: 'component styling',
-      checked: true,
-    },
-    {
-      id: 3,
-      text: 'make todo app',
+function createBulkTodos() {
+  const array = [];
+  for (let i = 1; i < 2500; i++) {
+    array.push({
+      id: i,
+      text: `할 일 ${i}`,
       checked: false,
-    },
-  ]);
+    });
+  }
+  return array;
+}
+
+function App() {
+  const [todos, setTodos] = useState(createBulkTodos);
   const nextId = useRef(4);
   const onInsert = useCallback(
     (text) => {
